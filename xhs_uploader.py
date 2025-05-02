@@ -136,7 +136,7 @@ class XHSPicsUploaderNode(Node):
 
     INPUTS = {
         "pics": {
-            "label": "图片文件路径列表",
+            "label": "图片文件路径列表（用逗号,隔开）",
             "type": "STRING",
             "required": True,
             "widget": "FILE"
@@ -180,7 +180,7 @@ class XHSPicsUploaderNode(Node):
         cookie_file = node_inputs["cookie_file"]
 
         async def create_context_with_cookies(p, cookie_file):
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=False)
             if cookie_file and os.path.exists(cookie_file):
                 with open(cookie_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
